@@ -77,50 +77,7 @@ namespace WMX_Anti
                 txtcs.Text = MainForm.getaxisstatus(Axis).VelocityCmd.ToString("F0");
                 txtas.Text = MainForm.getaxisstatus(Axis).ActualVelocity.ToString("F0");
 
-                groupBox5.Enabled = true;
-                if (!MainForm.getaxisstatus(Axis).InPos)
-                {
-                    lbPOS.BackColor = Color.LimeGreen;
-                }
-                else
-                {
-                    lbPOS.BackColor = Color.DarkGray;
-                }
-                if (MainForm.getaxisstatus(Axis).AmpAlarm)
-                {
-                    lbALM.BackColor = Color.Red;
-                }
-                else
-                {
-                    lbALM.BackColor = Color.DarkGray;
-                }
-                if (MainForm.getaxisstatus(Axis).HomeSwitch)
-                {
-                    if (MainForm.getaxisstatus(Axis).HomeDone)
-                    {
-                        lbORG.BackColor = Color.Yellow;
-                    }
-                }
-                else
-                {
-                    lbORG.BackColor = Color.DarkGray;
-                }
-                if (MainForm.getaxisstatus(Axis).PositiveLS)
-                {
-                    LBPEL.BackColor = Color.Red;
-                }
-                else
-                {
-                    LBPEL.BackColor = Color.DarkGray;
-                }
-                if (MainForm.getaxisstatus(Axis).NegativeLS)
-                {
-                    lbNEL.BackColor = Color.Red;
-                }
-                else
-                {
-                    lbNEL.BackColor = Color.DarkGray;
-                }
+                groupBox5.Enabled = true;              
             }
             else
             {
@@ -130,6 +87,51 @@ namespace WMX_Anti
                 txtcs.Text = "-";
                 txtas.Text = "-";
             }
+            if (MainForm.getaxisstatus(Axis).InPos)
+            {
+                lbPOS.BackColor = Color.LimeGreen;
+            }
+            else
+            {
+                lbPOS.BackColor = Color.DarkGray;
+            }
+            if (MainForm.getaxisstatus(Axis).AmpAlarm)
+            {
+                lbALM.BackColor = Color.Red;
+            }
+            else
+            {
+                lbALM.BackColor = Color.DarkGray;
+            }
+            if (MainForm.getaxisstatus(Axis).HomeSwitch)
+            {
+                if (MainForm.getaxisstatus(Axis).HomeDone)
+                {
+                    lbORG.BackColor = Color.Yellow;
+                }
+            }
+            else
+            {
+                lbORG.BackColor = Color.DarkGray;
+            }
+            if (MainForm.getaxisstatus(Axis).PositiveLS)
+            {
+                LBPEL.BackColor = Color.Red;
+            }
+            else
+            {
+                LBPEL.BackColor = Color.DarkGray;
+            }
+            if (MainForm.getaxisstatus(Axis).NegativeLS)
+            {
+                lbNEL.BackColor = Color.Red;
+            }
+            else
+            {
+                lbNEL.BackColor = Color.DarkGray;
+            }
+
+
         }
         private void initiallize()
         {

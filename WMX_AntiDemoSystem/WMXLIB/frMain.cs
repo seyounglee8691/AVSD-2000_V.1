@@ -144,63 +144,22 @@ namespace WMX_Anti
             bool[] bServo = new bool[4];
             bool[] bHome = new bool[4];
             bool[] bALM = new bool[4];
-            bPOT[nAxis] = wmxLIB_Main.GetAxisStaus(nAxis).PositiveLS;
-            bNOT[nAxis] = wmxLIB_Main.GetAxisStaus(nAxis).NearNegativeLS;
-            bALM[nAxis] = wmxLIB_Main.GetAxisStaus(nAxis).AmpAlarm;
+            //bPOT[nAxis] = wmxLIB_Main.GetAxisStaus(nAxis).PositiveLS;
+            //bNOT[nAxis] = wmxLIB_Main.GetAxisStaus(nAxis).NearNegativeLS;
+            //bALM[nAxis] = wmxLIB_Main.GetAxisStaus(nAxis).AmpAlarm;
             bServo[nAxis] = wmxLIB_Main.GetAxisStaus(nAxis).ServoOn;
 
-            CP[nAxis].Text = wmxLIB_Main.GetAxisStaus(nAxis).PosCmd.ToString("F0");
-            AP[nAxis].Text = wmxLIB_Main.GetAxisStaus(nAxis).ActualPos.ToString("F0");
-            txtPos[nAxis].Text = wmxLIB_Main.GetAxisStaus(nAxis).ActualPos.ToString("F0");
-            txtVel[nAxis].Text = wmxLIB_Main.GetAxisStaus(nAxis).ActualVelocity.ToString("F0");
 
 
-            //if (bServo[nAxis])
-            {
+
+
+                CP[nAxis].Text = wmxLIB_Main.GetAxisStaus(nAxis).PosCmd.ToString("F0");
+                AP[nAxis].Text = wmxLIB_Main.GetAxisStaus(nAxis).ActualPos.ToString("F0");
+                txtPos[nAxis].Text = wmxLIB_Main.GetAxisStaus(nAxis).ActualPos.ToString("F0");
+                txtVel[nAxis].Text = wmxLIB_Main.GetAxisStaus(nAxis).ActualVelocity.ToString("F0");
+
                 OP_STATE(wmxLIB_Main.GetAxisStaus(nAxis).OpState, nAxis);
-
-                if (wmxLIB_Main.GetAxisStaus(nAxis).HomeSwitch)
-                {
-                    if (wmxLIB_Main.GetAxisStaus(nAxis).HomeDone)
-                    {
-                        st_ORG[nAxis].BackColor = Color.Yellow;
-                        HomeT[nAxis] = false;
-                    }
-                    else
-                    {
-                        wmxLIB_Main.GetAxisStaus(nAxis).HomeDone = false;
-
-                    }
-                }
-                else
-                {
-                    st_ORG[nAxis].BackColor = Color.Transparent;
-                }
-                if (wmxLIB_Main.GetAxisStaus(nAxis).PositiveLS)
-                {
-                    st_PEL[nAxis].BackColor = Color.Red;
-                }
-                else
-                {
-                    st_PEL[nAxis].BackColor = Color.Transparent;
-                }
-                if (wmxLIB_Main.GetAxisStaus(nAxis).NearNegativeLS)
-                {
-                    st_NEL[nAxis].BackColor = Color.Red;
-                }
-                else
-                {
-                    st_NEL[nAxis].BackColor = Color.Transparent;
-                }
-                if (wmxLIB_Main.GetAxisStaus(nAxis).AmpAlarm)
-                {
-                    st_ALM[3].BackColor = Color.Red;
-                }
-                else
-                {
-                    st_ALM[nAxis].BackColor = Color.Transparent;
-                }
-            }
+            
             if (!bServo[nAxis])
             {
                 OP_St[nAxis].Text = "OFF";
@@ -210,6 +169,48 @@ namespace WMX_Anti
                 st_NEL[nAxis].BackColor = Color.Transparent;
                 st_PEL[nAxis].BackColor = Color.Transparent;
             }
+            if (getaxisstatus(nAxis).HomeSwitch)
+            {
+                if (getaxisstatus(nAxis).HomeDone)
+                {
+                    st_ORG[nAxis].BackColor = Color.Yellow;
+                    HomeT[nAxis] = false;
+                }
+                else
+                {
+                    getaxisstatus(nAxis).HomeDone = false;
+
+                }
+            }
+            else
+            {
+                st_ORG[nAxis].BackColor = Color.Transparent;
+            }
+            if (getaxisstatus(nAxis).PositiveLS)
+            {
+                st_PEL[nAxis].BackColor = Color.Red;
+            }
+            else
+            {
+                st_PEL[nAxis].BackColor = Color.Transparent;
+            }
+            if (getaxisstatus(nAxis).NegativeLS)
+            {
+                st_NEL[nAxis].BackColor = Color.Red;
+            }
+            else
+            {
+                st_NEL[nAxis].BackColor = Color.Transparent;
+            }
+            if (getaxisstatus(nAxis).AmpAlarm)
+            {
+                st_ALM[3].BackColor = Color.Red;
+            }
+            else
+            {
+                st_ALM[nAxis].BackColor = Color.Transparent;
+            }
+
         }
         private void start_IO()
         {
@@ -1849,7 +1850,7 @@ namespace WMX_Anti
             stop_IO();
             for (int i = 0; i < 4; i++)
             {
-            SetServooff(i);
+                SetServooff(i);
             }
         }
         private void btBofore_Click(object sender, EventArgs e)
